@@ -11,7 +11,7 @@ import TodoModal from "./TodoModal";
 
 
 {/* 事項版面 */}
-export default TodoList = ({list}) => {
+export default TodoList = ({list, updateList}) => {
     const [showList, showListVisible] = useState(false)
     const completeCount = list.todo.filter(todo => todo.completed).length; //完成數量計算
     const remainingCount = list.todo.length - completeCount; //未完成數量計算
@@ -21,14 +21,14 @@ export default TodoList = ({list}) => {
     }
     const closeModal = () => { //關閉 事項浮動版面
         showListVisible(false)
-      }
+    }
 
 
     return (
         <View>
             {/* 事項浮動版面 */}
             <Modal animationType="slide" visible={showList} onRequestClose={() => toggleListModal()}>
-                <TodoModal list={list} closeModal={closeModal} />
+                <TodoModal list={list} closeModal={closeModal} updateList={updateList} />
             </Modal>
             {/* 首頁事項版面 */}
             <TouchableOpacity 
@@ -42,11 +42,11 @@ export default TodoList = ({list}) => {
                 {/* 事項版面: 內容 */}
                 <View>
                     <View style={{alignItems:"center"}}>
-                        <Text style={styles.count}>{completeCount}</Text>
+                        <Text style={styles.count}>{remainingCount}</Text>
                         <Text style={styles.subtitle}>未完成</Text>
                     </View>
                     <View style={{alignItems:"center"}}>
-                        <Text style={styles.count}>{remainingCount}</Text>
+                        <Text style={styles.count}>{completeCount}</Text>
                         <Text style={styles.subtitle}>已完成</Text>
                     </View>
                 </View>

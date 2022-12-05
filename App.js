@@ -31,17 +31,24 @@ export default function App() {
 
   const renderList = (list) => { // 首頁下方 待辦事項區塊  連動TodoList.js
     return (
-      <TodoList list={list} />
+      <TodoList list={list} updateList={updateList} />
     )
   }
 
   // TODO 要完成新增功能  不會顯示在首頁  要解決 : 已解決~
-  const addList = (list) => {
+  const addList = (list) => { //新增事項 首頁下方 待辦事項區塊  
     setLists((prevLists) => {
       return [...prevLists, {...list, key: (prevLists.length + 1), todo: []}]
     })
   }
 
+  const updateList = (list) => { //list 就是 tempData, 將新的tempData 的資料 列出來
+    setLists(() => {
+      return lists.map(item => {
+        return item.key === list.key ? list : item
+      })
+    })
+  }
 
   return (
     <View style={styles.container}>
@@ -72,6 +79,7 @@ export default function App() {
           horizontal={true}
           showsHorizontalScrollIndicator={false}
           renderItem={({ item }) => renderList(item)}
+          keyboardShouldPersistTaps="always"
         />
       </View>
 
