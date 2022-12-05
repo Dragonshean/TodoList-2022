@@ -35,10 +35,10 @@ export default function App() {
     )
   }
 
-  // TODO 要完成新增功能  不會顯示在首頁  要解決
-  const addList = ({list}) => {
-    setLists((list) => {
-      return [...list, {...list, key: lists.length + 1, todo: []}]
+  // TODO 要完成新增功能  不會顯示在首頁  要解決 : 已解決~
+  const addList = (list) => {
+    setLists((prevLists) => {
+      return [...prevLists, {...list, key: (prevLists.length + 1), todo: []}]
     })
   }
 

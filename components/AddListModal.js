@@ -26,9 +26,9 @@ const AddListModal = ({ closeModal, addList }) => {
   {/* 新增事項 設定 */}
   const createTodo = (name, color) => { 
     // TODO 2022/12/4 想辦法完成name color 設定 : 完成~
-    const list = { name, color }
+    const list = {name, color}
 
-    addList({list});
+    addList(list);
     setName("");//清除輸入區域
     closeModal();//關閉浮動版面
   }
